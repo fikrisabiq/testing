@@ -21,7 +21,7 @@ export const createNote = async (req, res, next) => {
 export const getNotes = async (req, res) => {
   const { id: owner } = req.user;
   const notes = await NoteRepositories.getNotes(owner);
-  return response(res, 200, 'Catatan sukses ditampilkan', notes);
+  return response(res, 200, 'Catatan sukses ditampilkan', { notes });
 };
 
 export const getNoteById = async (req, res, next) => {
@@ -40,7 +40,7 @@ export const getNoteById = async (req, res, next) => {
     return next(new NotFoundError('Catatan tidak ditemukan'));
   }
 
-  return response(res, 200, 'Catatan sukses ditampilkan', note);
+  return response(res, 200, 'Catatan sukses ditampilkan', { note });
 };
 
 export const editNoteById = async (req, res, next) => {
@@ -70,7 +70,7 @@ export const editNoteById = async (req, res, next) => {
     return next(new NotFoundError('Catatan tidak ditemukan'));
   }
 
-  return response(res, 200, 'Catatan berhasil diperbarui', note);
+  return response(res, 200, 'Catatan berhasil diperbarui');
 };
 
 export const deleteNoteById = async (req, res, next) => {
